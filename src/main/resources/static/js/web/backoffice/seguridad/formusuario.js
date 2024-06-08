@@ -81,5 +81,31 @@ function listarUsuarios(){
             });
         }
     });
+
+     $(document).ready(function() {
+            $('#cambio').submit(function(event) {
+                event.preventDefault();
+                var nuevacontrasena = $('#nuevacontrasena').val();
+                var confirmarcontrasena = $('#confirmarcontrasena').val();
+
+                if (newPassword !== confirmPassword) {
+                    alert('Las contraseñas no coinciden.');
+                    return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: "/seguridad/usuario",
+                    contentType: 'application/json',
+                    data: JSON.stringify({ newPassword: newPassword }),
+                    success: function(response) {
+                        alert('Contraseña actualizada con éxito.');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error al actualizar la contraseña.');
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
 }
 

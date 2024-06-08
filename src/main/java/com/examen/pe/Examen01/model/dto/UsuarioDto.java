@@ -10,4 +10,7 @@ public class UsuarioDto {
     private String apellidos;
     private Boolean activo;
     private String email;
+    private String contrasena;
+    private String confirmacontrasena;
+
 }

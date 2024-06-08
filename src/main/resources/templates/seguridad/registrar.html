@@ -7,49 +7,17 @@
 </head>
 <body>
 <h2>Actualizar Contraseña</h2>
-<form id="/cambio">
+<form  method="post">
     <div>
-        <label for="newPassword">Nueva Contraseña:</label>
-        <input type="password" id="newPassword" name="newPassword" required>
+        <label for="nuevacontrasena">Nueva <Contra></Contra>seña:</label>
+        <input type="password" id="nuevacontrasena" name="nuevacontrasena" required>
     </div>
     <div>
-        <label for="confirmPassword">Repetir Contraseña:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <label for="confirmarcontrasena">Repetir Contraseña:</label>
+        <input type="password" id="confirmarcontrasena" name="confirmarcontrasena" required>
     </div>
     <button type="submit">Actualizar Contraseña</button>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#cambio').submit(function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            var newPassword = $('#newPassword').val();
-            var confirmPassword = $('#confirmPassword').val();
-
-            // Check if passwords match
-            if (newPassword !== confirmPassword) {
-                alert('Las contraseñas no coinciden.');
-                return;
-            }
-
-            // Send AJAX request to update password
-            $.ajax({
-                type: 'POST',
-                url: "/seguridad/registrar",
-                contentType: 'application/json',
-                data: JSON.stringify({ newPassword: newPassword }),
-                success: function(response) {
-                    alert('Contraseña actualizada con éxito.');
-                },
-                error: function(xhr, status, error) {
-                    alert('Error al actualizar la contraseña.');
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
