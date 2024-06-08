@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Contraseña</title>
+</head>
+<body>
+<h2>Actualizar Contraseña</h2>
+<form id="/cambio">
+    <div>
+        <label for="newPassword">Nueva Contraseña:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+    </div>
+    <div>
+        <label for="confirmPassword">Repetir Contraseña:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+    </div>
+    <button type="submit">Actualizar Contraseña</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#cambio').submit(function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var newPassword = $('#newPassword').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            // Check if passwords match
+            if (newPassword !== confirmPassword) {
+                alert('Las contraseñas no coinciden.');
+                return;
+            }
+
+            // Send AJAX request to update password
+            $.ajax({
+                type: 'POST',
+                url: "/seguridad/registrar",
+                contentType: 'application/json',
+                data: JSON.stringify({ newPassword: newPassword }),
+                success: function(response) {
+                    alert('Contraseña actualizada con éxito.');
+                },
+                error: function(xhr, status, error) {
+                    alert('Error al actualizar la contraseña.');
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
