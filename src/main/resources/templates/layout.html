@@ -31,9 +31,13 @@
                         <li><a class="dropdown-item" th:href="@{/seguridad/registrar}">Cambiar contraseña</a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                 </li>
+                <ul>
+                    <p>Bienvenido <strong th:text="${#authentication.principal.username}"></strong>.</p>
+                </ul>
             </ul>
             <span class="navbar-text" th:text="${session.nomusuario}"></span>&nbsp;
             <form th:action="@{/logout}" method="post" class="d-flex" role="search">
